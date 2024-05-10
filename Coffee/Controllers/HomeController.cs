@@ -1,5 +1,6 @@
 using Coffee.Models;
 using Coffee.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -26,7 +27,7 @@ namespace Coffee.Controllers
         {
             return View();
         }
-
+        [Authorize]
         public async Task<ActionResult> News()
         {
             var listNews = await _newsRepository.GetOnlyActiveNewsAsync();
