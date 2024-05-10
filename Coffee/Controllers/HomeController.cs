@@ -1,4 +1,5 @@
 using Coffee.Models;
+using Coffee.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -8,9 +9,12 @@ namespace Coffee.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private NewsRepository _newsRepository;
+
+        public HomeController(ILogger<HomeController> logger, NewsRepository newsRepository)
         {
             _logger = logger;
+            _newsRepository = newsRepository;
         }
 
         public IActionResult Index()
@@ -23,9 +27,11 @@ namespace Coffee.Controllers
             return View();
         }
 
-        public IActionResult News()
+        public async Task<ActionResult> News()
         {
-            return View();
+            var listNews = await _newsRepository.GetOnlyActiveNewsAsync();
+
+            return View(listNews);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
