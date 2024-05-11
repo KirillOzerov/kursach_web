@@ -1,9 +1,16 @@
 ﻿@{
-    ViewData["Title"] = "News";
+    ViewData["Title"] = "Новости";
 }
 
 <div class="text-center">
-    <h1 class="display-4">News</h1>
+    <h1 class="display-4">Новости</h1>
+
+    <a href="/Admin/CreateNews" class="btn btn-primary" role="button">Создать новость</a>
+
+    <br />
+    <hr />
+    <br />
+
     <ul>
         @foreach (var item in Model)
         {

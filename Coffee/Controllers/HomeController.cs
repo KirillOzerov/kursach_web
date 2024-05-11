@@ -18,8 +18,10 @@ namespace Coffee.Controllers
             _newsRepository = newsRepository;
         }
 
-        public IActionResult Index()
+        public ActionResult Index()
         {
+            bool isAdmin = User.IsInRole("Administrator");
+            ViewBag.IsAdmin = isAdmin;
             return View();
         }
 

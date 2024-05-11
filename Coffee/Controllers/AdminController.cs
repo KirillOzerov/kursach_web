@@ -32,5 +32,10 @@ namespace Coffee.Controllers
 
             return View(listNews);
         }
+
+        public async Task<ActionResult> CreateNews()
+        {
+            return View();
+        }
     }
 }
