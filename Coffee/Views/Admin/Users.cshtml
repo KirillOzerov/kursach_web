@@ -1,7 +1,16 @@
 ﻿@{
     ViewData["Title"] = "Users";
 }
+@model IEnumerable<User>
 
 <div class="text-center">
     <h1 class="display-4">Пользователи</h1>
+    <ul>
+        @foreach (var user in Model)
+        {
+            <li>
+                <span>@user.Email</span>
+            </li>
+        }
+    </ul>
 </div>

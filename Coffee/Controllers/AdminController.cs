@@ -1,7 +1,10 @@
-﻿using Coffee.Models.Entity;
+﻿using Coffee.Models;
+using Coffee.Models.Entity;
 using Coffee.Repositories;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using System.Security.Claims;
 
@@ -11,20 +14,22 @@ namespace Coffee.Controllers
     public class AdminController : Controller
     {
         private NewsRepository _newsRepository;
+        private UserManager<User> _userManager;
 
-        public AdminController(NewsRepository newsRepository)
+        public AdminController(NewsRepository newsRepository, UserManager<User> userManager)
         {
             _newsRepository = newsRepository;
+            _userManager = userManager;
         }
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult Users()
+        public async Task<IActionResult> Users()
         {
-            var ListUsers = new List<string>();
+            var listUsers = await _userManager.Users.ToListAsync();
 
-            return View(ListUsers);
+            return View(listUsers);
         }
 
         public async Task<ActionResult> News()
