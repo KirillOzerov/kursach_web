@@ -14,65 +14,36 @@
     <div class="col-xl-6 col-lg-12 order-lg-2 order-xl-1">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title mt-2 mb-3">Последняя новость</h4>
+                <h4 class="header-title mt-2 mb-3">Последние новости</h4>
 
                 <div class="table-responsive">
                     <table class="table table-centered table-nowrap table-hover mb-0">
                         <tbody>
-                            <tr>
-                                <td>
-                                    <h5 class="font-14 my-1 fw-normal">ASOS Ridley High Waist</h5>
-                                    <span class="text-muted font-13">07 April 2018</span>
-                                </td>
-                                <td>
-                                    <h5 class="font-14 my-1 fw-normal">$79.49</h5>
-                                    <span class="text-muted font-13">Price</span>
-                                </td>
-                                <td>
-                                    <h5 class="font-14 my-1 fw-normal">82</h5>
-                                    <span class="text-muted font-13">Quantity</span>
-                                </td>
-                                <td>
-                                    <h5 class="font-14 my-1 fw-normal">$6,518.18</h5>
-                                    <span class="text-muted font-13">Amount</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h5 class="font-14 my-1 fw-normal">Marco Lightweight Shirt</h5>
-                                    <span class="text-muted font-13">25 March 2018</span>
-                                </td>
-                                <td>
-                                    <h5 class="font-14 my-1 fw-normal">$128.50</h5>
-                                    <span class="text-muted font-13">Price</span>
-                                </td>
-                                <td>
-                                    <h5 class="font-14 my-1 fw-normal">37</h5>
-                                    <span class="text-muted font-13">Quantity</span>
-                                </td>
-                                <td>
-                                    <h5 class="font-14 my-1 fw-normal">$4,754.50</h5>
-                                    <span class="text-muted font-13">Amount</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h5 class="font-14 my-1 fw-normal">Half Sleeve Shirt</h5>
-                                    <span class="text-muted font-13">17 March 2018</span>
-                                </td>
-                                <td>
-                                    <h5 class="font-14 my-1 fw-normal">$39.99</h5>
-                                    <span class="text-muted font-13">Price</span>
-                                </td>
-                                <td>
-                                    <h5 class="font-14 my-1 fw-normal">64</h5>
-                                    <span class="text-muted font-13">Quantity</span>
-                                </td>
-                                <td>
-                                    <h5 class="font-14 my-1 fw-normal">$2,559.36</h5>
-                                    <span class="text-muted font-13">Amount</span>
-                                </td>
-                            </tr>
+                            <ul>
+                                @if (Model.Count > 2)
+                                {
+                                    for (int i = Model.Count - 2; i < Model.Count; i++)
+                                    {
+                                        var item = Model[i];
+                                        <li>
+                                            <span>@item.Title</span>
+                                            <span>@item.Text</span>
+                                            <span>@item.Date.AddHours(3).ToString("yyyy.MM.dd")</span>
+                                        </li>
+                                    }
+                                }
+                                else
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <li>
+                                            <span>@item.Title</span>
+                                            <span>@item.Text</span>
+                                            <span>@item.Date.AddHours(3).ToString("yyyy.MM.dd")</span>
+                                        </li>
+                                    }
+                                }
+                            </ul>
                         </tbody>
                     </table>
                 </div> <!-- end table-responsive-->

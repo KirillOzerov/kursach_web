@@ -18,11 +18,12 @@ namespace Coffee.Controllers
             _newsRepository = newsRepository;
         }
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
+            var listNews = await _newsRepository.GetOnlyActiveNewsAsync();
             bool isAdmin = User.IsInRole("Administrator");
             ViewBag.IsAdmin = isAdmin;
-            return View();
+            return View(listNews);
         }
 
         public IActionResult Privacy()
